@@ -10,7 +10,7 @@ set interfaces ethernet eth0 address 172.28.2.37/31
 set interfaces ethernet eth1 address 172.28.2.35/31
 set interfaces ethernet eth2 address 172.28.8.3/26
 set interfaces ethernet eth3 address 172.28.8.67/26
-set interfaces bonding bond0 address 192.168.8.129/31
+set interfaces bonding bond0 address 172.28.8.129/31
 set interfaces bonding bond0 min-links 1
 set interfaces bonding bond0 mii-mon-interval 100
 set interfaces bonding bond0 mode 802.3ad
