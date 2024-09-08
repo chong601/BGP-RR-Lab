@@ -1,0 +1,33 @@
+process dns-1.0 {
+    run exabgp-healthcheck --ip 172.28.11.0 -i 1 --rise 3 --fall 1 --cmd "dig @127.0.0.1 version.bind txt ch" --withdraw-on-down --disable /tmp/anycast-dns-maintenance-mode --label dns-1-0;
+    encoder text;
+}
+
+process dns-1.1 {
+    run exabgp-healthcheck --ip 172.28.11.0 -i 1 --rise 3 --fall 1 --cmd "dig @127.0.0.1 version.bind txt ch" --withdraw-on-down --disable /tmp/anycast-dns-maintenance-mode --label dns-1-1;
+    encoder text;
+}
+
+neighbor 172.28.8.130 {
+    description "will announce a route to a service";
+    router-id 172.28.8.12;
+    local-address 172.28.8.12;
+    local-as 64600;
+    peer-as 64600;
+
+    api dns-1.0 {
+        processes [ dns-1.0 ];
+    }
+}
+
+neighbor 172.28.8.131 {
+    description "will announce a route to a service";
+    router-id 172.28.8.12;
+    local-address 172.28.8.12;
+    local-as 64600;
+    peer-as 64600;
+
+    api dns-1.1 {
+        processes [ dns-1.1 ];
+    }
+}
