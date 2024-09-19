@@ -9,7 +9,7 @@ process dns-1.1 {
 }
 
 neighbor 172.28.8.130 {
-    description "will announce a route to a service";
+    description "advertise to AS64600-CE-01";
     router-id 172.28.8.10;
     local-address 172.28.8.10;
     local-as 64600;
@@ -21,7 +21,7 @@ neighbor 172.28.8.130 {
 }
 
 neighbor 172.28.8.131 {
-    description "will announce a route to a service";
+    description "advertise to AS64600-CE-02";
     router-id 172.28.8.10;
     local-address 172.28.8.10;
     local-as 64600;
